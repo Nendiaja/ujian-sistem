@@ -1,0 +1,4 @@
+Jalankan Aplikasi Laragon, Klik Start all .
+Buka Aplikasi Visual Studio Code , Masuk ke Jendela FILE -> SELECT FOLDER->MAGANG PNP 2024->sistem-ujian dan klik Open Folder.
+Buka Jendela Terminal->new terminal-> Ketikkan Php Artisan Serve (untuk menjalankan server laptop), Atau Php Artisan Serve --host Alamat IP Laptop --port 80 (Untuk jalankan secara lokal menggunakan theatering/hotspot).
+Copy Link dan Jalankan di Browser
