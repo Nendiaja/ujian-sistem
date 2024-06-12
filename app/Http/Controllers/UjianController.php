@@ -51,8 +51,6 @@ class UjianController extends Controller
         $user = auth()->user();
         $kategori_id; 
 
-        $kkm = Rules::getValue('KKM');
-
         foreach ($request->opsi as $index => $jawaban) {
             // Pisahkan nilai jawaban dan soal_id
             $data = explode('|', $jawaban);
@@ -69,7 +67,6 @@ class UjianController extends Controller
 
                 // jumlahbenar harus sesuai poin yang ada (4);
             }
-
 
             Nilai::create([
                 'user_id' => $user->id,
@@ -91,19 +88,19 @@ class UjianController extends Controller
             ->where('kategori_id', $kategori_id)
             ->value('nilai_total');
 
-        if ($currentNilaiTotal > $kkm) {
+        if ($totalNilai > $currentNilaiTotal) {
             // Lakukan pembaruan jika nilai terbaru lebih tinggi
             KategoriUser::where('user_id', $user->id)
                 ->where('kategori_id', $kategori_id)
                 ->update([
                     'status' => 'new',
-                    'nilai_total' => $kkm
+                    'nilai_total' => $totalNilai
                 ]);
         }
 
         alert()->success('Success Message', 'Skor anda ' . $totalNilai);
         return redirect()->route('user.dashboard.index');
-    } 
+    }
     
 
     /**
